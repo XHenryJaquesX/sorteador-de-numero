@@ -6,22 +6,28 @@ function sortear()
 
     let numerosSorteados = [];
 
-    for (let i = 0; i < quantidadeDeNumeros; i++)
-    {
-        let numero = sortearNumero(doNumero, ateONumero);
+    if (quantidadeDeNumeros > (ateONumero - doNumero + 1))
+        {
+            alert(`Erro! Você está tentando sortear mais números do que existem no intervalo selecionado!`);
+        } else
+            {
+                for (let i = 0; i < quantidadeDeNumeros; i++)
+                {
+                    let numero = sortearNumero(doNumero, ateONumero);
 
-        while(numerosSorteados.includes(numero)){
-            numero = sortearNumero(doNumero, ateONumero);
-        }
+                    while(numerosSorteados.includes(numero)){
+                        numero = sortearNumero(doNumero, ateONumero);
+                    }
 
-        numerosSorteados.push(numero);
-    }
+                    numerosSorteados.push(numero);
+                }
 
-    let resultado = document.getElementById(`resultado`);
+                let resultado = document.getElementById(`resultado`);
 
-    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${numerosSorteados}</label>`;
+                resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${numerosSorteados}</label>`;
 
-    ativarBotao();
+                ativarBotao();
+            }
 
 }
 
