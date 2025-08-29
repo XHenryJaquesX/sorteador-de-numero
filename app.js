@@ -6,28 +6,31 @@ function sortear()
 
     let numerosSorteados = [];
 
-    if (quantidadeDeNumeros > (ateONumero - doNumero + 1))
+    if (doNumero >= ateONumero)
         {
-            alert(`Erro! Você está tentando sortear mais números do que existem no intervalo selecionado!`);
-        } else
+            alert(`Erro! O campo "Do número" deve ser inferior ao campo "Até o número".`);
+        } else if (quantidadeDeNumeros > (ateONumero - doNumero + 1))
             {
-                for (let i = 0; i < quantidadeDeNumeros; i++)
+                alert(`Erro! Você está tentando sortear mais números do que existem no intervalo selecionado!`);
+            } else
                 {
-                    let numero = sortearNumero(doNumero, ateONumero);
+                    for (let i = 0; i < quantidadeDeNumeros; i++)
+                    {
+                        let numero = sortearNumero(doNumero, ateONumero);
 
-                    while(numerosSorteados.includes(numero)){
-                        numero = sortearNumero(doNumero, ateONumero);
+                        while(numerosSorteados.includes(numero)){
+                            numero = sortearNumero(doNumero, ateONumero);
+                        }
+
+                        numerosSorteados.push(numero);
                     }
 
-                    numerosSorteados.push(numero);
+                    let resultado = document.getElementById(`resultado`);
+
+                    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${numerosSorteados}</label>`;
+
+                    ativarBotao();
                 }
-
-                let resultado = document.getElementById(`resultado`);
-
-                resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${numerosSorteados}</label>`;
-
-                ativarBotao();
-            }
 
 }
 
